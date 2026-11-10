@@ -1,11 +1,19 @@
-## CoreLoader
-CoreLoader, is a mod menu loader designed for Gorilla Tag
+# CoreLoader
 
-It Features, PC Menus Ported Right To Your Standalone Quest.
+This repository now includes a small safe starter structure for a mod-loading project:
 
-It is unfinished but will be ported as a .apk soon for menu loaders
+- `src/` — source code examples
+- `mods/` — place plugin modules or DLLs here
+- `.gitignore` — ignores build artifacts
 
-This menu was made by stripesmods
+Important:
+- This repository does not include a real process injector.
+- Any process interaction or injection capability should only be used with explicit, authorized access and in compliance with applicable laws and platform policies.
 
-Anything that is copyrighted from here, will be reported for pladurism
+To create a ZIP archive locally from your machine:
 
+  zip -r CoreLoader.zip .
+
+or on Windows PowerShell:
+
+  Compress-Archive -Path . -DestinationPath CoreLoader.zip
