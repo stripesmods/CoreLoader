@@ -3,71 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ledriftrinth - Gorilla Tag Mod Menu Loader</title>
+    <meta name="theme-color" content="#171a24">
+    <meta name="description" content="CoreLoader — a simple Gorilla Tag mod loader interface.">
+    <title>CoreLoader — Gorilla Tag Mod Loader</title>
     <style>
-        body {
+        :root {
+            color-scheme: dark;
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
-            color: #fff;
+            background: #171a24;
+            color: #f4f6fb;
+        }
+        * { box-sizing: border-box; }
+        body {
+            min-height: 100vh;
             margin: 0;
-            padding: 0;
+            display: flex;
+            flex-direction: column;
             text-align: center;
+            background: radial-gradient(ellipse at top, #293044 0%, #171a24 65%);
         }
         header {
-            padding: 20px;
-            background-color: #222;
-            border-bottom: 2px solid #444;
+            padding: 28px 20px;
+            background: rgba(15, 17, 24, 0.75);
+            border-bottom: 1px solid #343b50;
         }
         h1 {
-            font-size: 2rem;
             margin: 0;
+            font-size: clamp(2rem, 6vw, 3rem);
+            letter-spacing: 0.08em;
         }
-        .menu-container {
-            max-width: 600px;
+        header p { margin: 8px 0 0; color: #b7c0d5; }
+        main {
+            width: min(600px, calc(100% - 32px));
             margin: 40px auto;
-            padding: 20px;
-            background-color: #2b2b2b;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            padding: 24px;
+            background: #222737;
+            border: 1px solid #343b50;
+            border-radius: 12px;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
         }
+        h2 { margin-top: 0; }
+        #mod-list { color: #d7dced; }
+        .mod-item { margin: 12px 0; }
+        .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
         button {
-            background-color: #4cafef;
-            color: #fff;
-            border: none;
             padding: 12px 20px;
-            margin: 10px;
-            border-radius: 5px;
-            cursor: pointer;
+            border: 0;
+            border-radius: 6px;
+            background: #6b7cff;
+            color: white;
             font-size: 1rem;
-            transition: background-color 0.3s ease;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
         }
-        button:hover {
-            background-color: #379ad6;
-        }
+        button:hover { background: #5366ec; transform: translateY(-1px); }
+        button:focus-visible { outline: 3px solid #c5ccff; outline-offset: 3px; }
         footer {
-            margin-top: 40px;
+            margin-top: auto;
+            padding: 20px;
+            color: #9da7bd;
             font-size: 0.9rem;
-            color: #aaa;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Ledriftrinth</h1>
-        <p>Mod Menu Loader for AnotherAxiom.GorillaTag</p>
+        <h1>CoreLoader</h1>
+        <p>A simple mod loader interface for AnotherAxiom.GorillaTag</p>
     </header>
 
-    <div class="menu-container">
+    <main>
         <h2>Available Mods</h2>
-        <div id="mod-list">
-            <!-- Mods will be dynamically loaded here -->
+        <div id="mod-list" aria-live="polite">
+            <p>Choose “Show Mods” to view the available entries.</p>
         </div>
-        <button onclick="loadMods()">Load Mods</button>
-        <button onclick="clearMods()">Clear Mods</button>
-    </div>
+        <div class="actions">
+            <button type="button" onclick="loadMods()">Show Mods</button>
+            <button type="button" onclick="clearMods()">Clear List</button>
+        </div>
+    </main>
 
     <footer>
-        <p>Ledriftrinth © 2026 — For entertainment & customization purposes only.</p>
+        <p>CoreLoader © 2026 — For entertainment and customization purposes only.</p>
     </footer>
 
     <script>
@@ -79,17 +96,23 @@
 
         function loadMods() {
             const modList = document.getElementById('mod-list');
-            modList.innerHTML = '';
-            mods.forEach(mod => {
+            modList.replaceChildren();
+            mods.forEach((mod) => {
                 const modItem = document.createElement('div');
-                modItem.innerHTML = `<strong>${mod.name}</strong>: ${mod.description}`;
-                modItem.style.margin = '10px 0';
+                modItem.className = 'mod-item';
+                const name = document.createElement('strong');
+                name.textContent = mod.name;
+                modItem.append(name, document.createTextNode(`: ${mod.description}`));
                 modList.appendChild(modItem);
             });
         }
 
         function clearMods() {
-            document.getElementById('mod-list').innerHTML = '';
+            const modList = document.getElementById('mod-list');
+            modList.replaceChildren();
+            const message = document.createElement('p');
+            message.textContent = 'The list is clear.';
+            modList.appendChild(message);
         }
     </script>
 </body>
