@@ -1,19 +1,11 @@
-# CoreLoader
+## CoreLoader
 
-This repository now includes a small safe starter structure for a mod-loading project:
+Chat, I finally made coreloader a Mod Menu Loader for Gorilla Tag for PC Or The APK Will be Released soon, and you could lib mod fangames aswell.
 
-- `src/` — source code examples
-- `mods/` — place plugin modules or DLLs here
-- `.gitignore` — ignores build artifacts
+While I'm Working, Im Open for Collabs at anytime!
 
-Important:
-- This repository does not include a real process injector.
-- Any process interaction or injection capability should only be used with explicit, authorized access and in compliance with applicable laws and platform policies.
 
-To create a ZIP archive locally from your machine:
-
-  zip -r CoreLoader.zip .
-
-or on Windows PowerShell:
-
-  Compress-Archive -Path . -DestinationPath CoreLoader.zip
+### CoreLoader Commands
+coin boot [file_name.zip]
+patch gorillatag.hu
+load menu [menu_name.so or menu_name.zip]
